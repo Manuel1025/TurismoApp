@@ -4,12 +4,20 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.example.turismoapp.R;
 
 import com.example.turismoapp.database.Publicacion;
@@ -52,7 +60,17 @@ public class PublicacionAdapter extends ArrayAdapter<Publicacion> {
                                           public void onSuccess(byte[] bytes) {
                                               Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
                                               //mImageView.setImageBitmap(bitmap);
-                                              imagen.setImageBitmap(bitmap);
+                                              //imagen.setImageBitmap(bitmap);
+                                              Glide.with(getContext()).asBitmap().load(bitmap).into(new CustomTarget<Bitmap>() {
+                                                  @Override
+                                                  public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                                                      imagen.setImageBitmap(resource);
+                                                  }
+
+                                                  @Override
+                                                  public void onLoadCleared(@Nullable Drawable placeholder) {
+                                                  }
+                                              });
                                           }
                                       });
         // Setup.

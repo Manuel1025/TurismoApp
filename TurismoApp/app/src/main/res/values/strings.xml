@@ -9,6 +9,6 @@
     <string name="action_settings">Cerrar sesion</string>
 
     <string name="menu_home">Inicio</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_gallery">Hoteles</string>
+    <string name="menu_slideshow">Cabañas</string>
 </resources>

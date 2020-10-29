@@ -4,23 +4,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.turismoapp.R;
 import com.example.turismoapp.database.FirebaseGuardarLeer;
-import com.example.turismoapp.database.Publicacion;
-import com.google.firebase.auth.FirebaseAuth;
-
-import java.util.List;
 
 public class HomeFragment extends Fragment {
 
@@ -42,7 +33,7 @@ public class HomeFragment extends Fragment {
     public void Relaciones(View r){
         firebaseGuardarLeer = new FirebaseGuardarLeer();
 
-        ListPublicaciones = r.findViewById(R.id.ListaPublicaciones);
+        ListPublicaciones = r.findViewById(R.id.ListaCaba);
         firebaseGuardarLeer.obtenerPublicaciones(ListPublicaciones,getContext());
     }
 
