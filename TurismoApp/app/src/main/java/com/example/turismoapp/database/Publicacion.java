@@ -14,6 +14,7 @@ public class Publicacion {
     public String email;
     public String rutaFoto;
     public String nombre;
+    public String localizacion;
     public float coordenadaX;
     public float coordenadaY;
     public String fecha;
@@ -23,7 +24,7 @@ public class Publicacion {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public Publicacion(String email, String rFoto, String nombre, float X, float Y) {
+    public Publicacion(String email, String rFoto, String nombre, float X, float Y,String loc) {
         this.email = email;
         this.rutaFoto = rFoto;
         this.nombre = nombre;
@@ -31,9 +32,10 @@ public class Publicacion {
         this.coordenadaY = Y;
         this.fecha = fechaActual();
         this.hora = horaActual();
+        this.localizacion = loc;
     }
 
-    public Publicacion(String email, String rFoto, String nombre, float X, float Y, String f, String h) {
+    public Publicacion(String email, String rFoto, String nombre, float X, float Y, String f, String h, String loc) {
         this.email = email;
         this.rutaFoto = rFoto;
         this.nombre = nombre;
@@ -41,6 +43,7 @@ public class Publicacion {
         this.coordenadaY = Y;
         this.fecha = f;
         this.hora = h;
+        this.localizacion = loc;
     }
 
     public String fechaActual(){

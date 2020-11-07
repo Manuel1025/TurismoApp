@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.turismoapp.complementos.EstablecimientoAdapter;
 import com.example.turismoapp.complementos.PublicacionAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -43,6 +44,7 @@ public class FirebaseGuardarLeer {
     public Usuario user;
     public String pEmail;
     public ArrayList<Publicacion> arrayListPub;
+    public ArrayList<Establecimiento> arrayListEst;
     ArrayAdapter arrayAdapter;
 
     public FirebaseGuardarLeer(){
@@ -51,6 +53,7 @@ public class FirebaseGuardarLeer {
         myRef = database.getReference();
         mStorageRef = FirebaseStorage.getInstance().getReference();
         arrayListPub = new ArrayList<Publicacion>();
+        arrayListEst = new ArrayList<Establecimiento>();
     }
 
     public void nuevoUsuario(String email, String nombre) {//Guarda otros datos del usuario en bd
@@ -78,9 +81,9 @@ public class FirebaseGuardarLeer {
         });
     }
 
-    public void nuevoPublicacion(String email,String nomb, ImageView img,Context c) {//Guarda publicacion del usuario
+    public void nuevoPublicacion(String email,String nomb, String loc, ImageView img,Context c) {//Guarda publicacion del usuario
         String rFoto = "imagenes/publicacion/"+nombreImagen()+".jpg";
-        Publicacion publicacion = new Publicacion(email, rFoto, nomb, 0, 0);
+        Publicacion publicacion = new Publicacion(email, rFoto, nomb, 0, 0, loc);
         img.setDrawingCacheEnabled(true);
         img.buildDrawingCache();
         Bitmap bitmap = ((BitmapDrawable) img.getDrawable()).getBitmap();
@@ -118,7 +121,8 @@ public class FirebaseGuardarLeer {
                                     , Float.parseFloat(postSnapshot.child("coordenadaX").getValue().toString())
                                     , Float.parseFloat(postSnapshot.child("coordenadaY").getValue().toString())
                                     , postSnapshot.child("fecha").getValue().toString()
-                                    , postSnapshot.child("hora").getValue().toString()));
+                                    , postSnapshot.child("hora").getValue().toString()
+                                    , postSnapshot.child("localizacion").getValue().toString()));
                 }
 
                 /*for (int i = arrayList.size(); i-1>=0; i--){
@@ -134,6 +138,36 @@ public class FirebaseGuardarLeer {
             }
         });
     }
+
+    public void obtenerEstablecimiento(ListView ListObjetos, Context c, String ruta) {//Obtener los Establecimientos
+        String rFoto = "Ruta en Storage de la imagen de perfil";
+
+        myRef.child(ruta).addValueEventListener(new ValueEventListener() {//Extraemos todas los Establecimientos
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                pEmail="";
+                arrayListEst.clear();
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    arrayListEst.add(new Establecimiento(postSnapshot.child("titulo").getValue().toString()
+                            , postSnapshot.child("localizacion").getValue().toString()
+                            , postSnapshot.child("descripcion").getValue().toString()
+                            , postSnapshot.child("vNoche").getValue().toString()
+                            , postSnapshot.child("telefono").getValue().toString()
+                            , postSnapshot.child("email").getValue().toString()
+                            , postSnapshot.child("rfoto").getValue().toString()));
+                }
+
+                arrayAdapter = new EstablecimientoAdapter(c, arrayListEst);
+                ListObjetos.setAdapter(arrayAdapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("TAGLOG", "Error!", databaseError.toException());
+            }
+        });
+    }
+
 
     public void guardarDatos(Publicacion p, Context c){
         myRef.child("Publicaciones").push().setValue(p).addOnSuccessListener(new OnSuccessListener<Void>() {

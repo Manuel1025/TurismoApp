@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TurismoApp">
-        <activity android:name=".crearPublicacion"></activity>
+        <activity android:name=".vistaInfoEstablecimiento"></activity>
+        <activity android:name=".crearPublicacion" />
         <activity
             android:name=".InicioMenu"
             android:label="@string/title_activity_inicio_menu"

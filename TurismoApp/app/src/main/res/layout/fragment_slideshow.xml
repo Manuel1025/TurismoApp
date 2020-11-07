@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
-        android:id="@+id/ListaCaba"
+        android:id="@+id/ListaCabanias"
         android:layout_width="360dp"
         android:layout_height="632dp"
         android:layout_marginTop="29dp"

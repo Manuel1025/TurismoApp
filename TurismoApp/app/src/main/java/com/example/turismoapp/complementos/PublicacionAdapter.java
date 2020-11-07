@@ -49,12 +49,13 @@ public class PublicacionAdapter extends ArrayAdapter<Publicacion> {
         // Referencias UI.
         TextView name = convertView.findViewById(R.id.tvNombreItem);
         TextView fecha1 = convertView.findViewById(R.id.tvFechaItem);
+        TextView loc = convertView.findViewById(R.id.tvLocalizacionItem);
         ImageView imagen = convertView.findViewById(R.id.imagenPublicacion);
 
         // publicacion actual.
         Publicacion lead = getItem(position);
 
-        FirebaseStorage.getInstance().getReference().child(lead.rutaFoto).getBytes(1024*1024)
+        FirebaseStorage.getInstance().getReference().child(lead.rutaFoto).getBytes((1024*1024)*3)
                 .addOnSuccessListener(new OnSuccessListener<byte[]>() {
                                           @Override
                                           public void onSuccess(byte[] bytes) {
@@ -76,6 +77,7 @@ public class PublicacionAdapter extends ArrayAdapter<Publicacion> {
         // Setup.
         //Glide.with(getContext()).load(lead.getmImage()).into(avatar);
         name.setText(lead.nombre);
+        loc.setText(lead.localizacion);
         fecha1.setText(lead.fecha);
         return convertView;
     }

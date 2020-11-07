@@ -49,6 +49,17 @@
                 android:layout_height="289dp"
                 tools:srcCompat="@tools:sample/avatars" />
 
+            <EditText
+                android:id="@+id/tvLocalizacionPub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:fontFamily="@font/aclonica"
+                android:hint="Ingresa la ubicacion de la imagen"
+                android:inputType="textPersonName"
+                android:textColor="#0C0C0C"
+                android:textColorHint="#7A7A7A" />
+
             <Button
                 android:id="@+id/btnSubir"
                 android:layout_width="match_parent"

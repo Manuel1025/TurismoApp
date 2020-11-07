@@ -33,7 +33,7 @@ public class HomeFragment extends Fragment {
     public void Relaciones(View r){
         firebaseGuardarLeer = new FirebaseGuardarLeer();
 
-        ListPublicaciones = r.findViewById(R.id.ListaCaba);
+        ListPublicaciones = r.findViewById(R.id.ListaCabanias);
         firebaseGuardarLeer.obtenerPublicaciones(ListPublicaciones,getContext());
     }
 

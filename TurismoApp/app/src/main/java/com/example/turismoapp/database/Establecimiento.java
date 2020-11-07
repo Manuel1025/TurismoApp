@@ -2,7 +2,9 @@ package com.example.turismoapp.database;
 
 import android.widget.ImageView;
 
-public class Establecimiento {
+import java.io.Serializable;
+
+public class Establecimiento implements Serializable {
     public String titulo;
     public String localizacion;
     public String descripcion;

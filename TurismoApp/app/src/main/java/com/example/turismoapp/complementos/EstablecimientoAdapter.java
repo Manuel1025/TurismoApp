@@ -52,7 +52,7 @@ public class EstablecimientoAdapter extends ArrayAdapter<Establecimiento> {
         // publicacion actual.
         Establecimiento lead = getItem(position);
 
-        /*FirebaseStorage.getInstance().getReference().child(lead.rFoto).getBytes(1024*1024)
+        FirebaseStorage.getInstance().getReference().child(lead.rFoto).getBytes((1024*1024)*3)
                 .addOnSuccessListener(new OnSuccessListener<byte[]>() {
                     @Override
                     public void onSuccess(byte[] bytes) {
@@ -70,7 +70,7 @@ public class EstablecimientoAdapter extends ArrayAdapter<Establecimiento> {
                             }
                         });
                     }
-                });*/
+                });
 
         titulo.setText(lead.titulo);
         localizacion.setText(lead.localizacion);

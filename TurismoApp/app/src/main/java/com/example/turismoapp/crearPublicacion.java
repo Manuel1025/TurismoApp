@@ -21,7 +21,9 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.turismoapp.database.FirebaseGuardarLeer;
@@ -38,6 +40,7 @@ public class crearPublicacion extends AppCompatActivity {
     public Button btnBuscar;
     public Button btnSubir;
     public ImageView Imagen;
+    public EditText Localizacion;
     private Uri mImageCaptureUri;
     public String imageUrl;
     private ContentValues values;
@@ -80,6 +83,8 @@ public class crearPublicacion extends AppCompatActivity {
         btnBuscar = findViewById(R.id.btnBuscar);
         btnSubir = findViewById(R.id.btnSubir);
         Imagen = findViewById(R.id.imgCargada);
+        Localizacion = findViewById(R.id.tvLocalizacionPub);
+
         nombre = intent.getStringExtra("nombre");
         firebaseGuardarLeer = new FirebaseGuardarLeer();
     }
@@ -113,8 +118,13 @@ public class crearPublicacion extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (Imagen.getDrawable()!=null){
-                    firebaseGuardarLeer.nuevoPublicacion(FirebaseAuth.getInstance().getCurrentUser().getEmail(),nombre,Imagen,getApplicationContext());
-                    finish();
+                    if (!Localizacion.getText().toString().equalsIgnoreCase("")){
+                        firebaseGuardarLeer.nuevoPublicacion(FirebaseAuth.getInstance().getCurrentUser().getEmail(),nombre
+                                ,Localizacion.getText().toString(),Imagen,getApplicationContext());
+                        finish();
+                    }else{
+                        Toast.makeText(getApplicationContext(),"No ingresado una localizacion",Toast.LENGTH_LONG).show();
+                    }
                 }else{
                     Toast.makeText(getApplicationContext(),"No se ha cargado una imagen",Toast.LENGTH_LONG).show();
                 }
