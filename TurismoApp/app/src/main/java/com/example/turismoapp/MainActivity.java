@@ -217,6 +217,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         }
 
         barraProg.setVisibility(View.VISIBLE);
+        btnLogin.setEnabled(false);
         mAuth.signInWithEmailAndPassword(email,passw).addOnCompleteListener(new OnCompleteListener<AuthResult>() {//verifica si existe usuario y contraseña
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -226,6 +227,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 }else {//envia mensaje de error
                     Toast.makeText(getApplicationContext(),"Error ! "+task.getException().getMessage(),Toast.LENGTH_LONG).show();
                     barraProg.setVisibility(View.GONE);
+                    btnLogin.setEnabled(true);
                 }
             }
         });

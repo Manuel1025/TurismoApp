@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,6 +31,7 @@ public class vistaInfoEstablecimiento extends AppCompatActivity {
     private TextView numero;
     private TextView email;
     public Establecimiento message;
+    public String vista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,7 @@ public class vistaInfoEstablecimiento extends AppCompatActivity {
 
         Intent intent = getIntent();
         message = (Establecimiento) intent.getSerializableExtra("EXTRA_MESSAGE");
+        vista =  intent.getStringExtra("vista");
         Relaciones();
     }
 
@@ -56,6 +59,18 @@ public class vistaInfoEstablecimiento extends AppCompatActivity {
         valor.setText("Valor: "+message.vNoche);
         numero.setText("Numero contacto: "+message.telefono);
         email.setText("Email de contacto: "+message.email);
+
+        if (vista.equalsIgnoreCase("restaurantes")){
+            valor.setVisibility(View.GONE);
+        }else if(vista.equalsIgnoreCase("atractivos")){
+            valor.setVisibility(View.GONE);
+            numero.setVisibility(View.GONE);
+            email.setVisibility(View.GONE);
+        }else{
+            valor.setVisibility(View.VISIBLE);
+            numero.setVisibility(View.VISIBLE);
+            email.setVisibility(View.VISIBLE);
+        }
         Imagen(message.rFoto);
     }
 

@@ -47,6 +47,7 @@ public class SlideshowFragment extends Fragment {
 
                 Intent intent = new Intent (getContext(), vistaInfoEstablecimiento.class);
                 intent.putExtra("EXTRA_MESSAGE", item);
+                intent.putExtra("vista", "cabanias");
                 startActivity(intent);
             }
         });

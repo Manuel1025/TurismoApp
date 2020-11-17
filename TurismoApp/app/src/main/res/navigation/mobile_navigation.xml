@@ -22,4 +22,16 @@
         android:name="com.example.turismoapp.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/nav_Restaurante"
+        android:name="com.example.turismoapp.ui.restaurante.RestauranteFragment"
+        android:label="Restaurantes"
+        tools:layout="@layout/restaurante_fragment" />
+
+    <fragment
+        android:id="@+id/nav_Atractivo"
+        android:name="com.example.turismoapp.ui.atractivo.AtractivoFragment"
+        android:label="Atractivos"
+        tools:layout="@layout/main_fragment" />
 </navigation>

@@ -47,6 +47,7 @@ public class GalleryFragment extends Fragment {
 
                 Intent intent = new Intent (getContext(), vistaInfoEstablecimiento.class);
                 intent.putExtra("EXTRA_MESSAGE", item);
+                intent.putExtra("vista", "hoteles");
                 startActivity(intent);
             }
         });
