@@ -195,8 +195,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         try {
             GoogleSignInAccount acc = completedTask.getResult(ApiException.class);
             Toast.makeText(getApplicationContext(),"Login google completado",Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(MainActivity.this,Inicio.class);
-            startActivity(intent);
+            //Intent intent = new Intent(MainActivity.this,Inicio.class);
+            //startActivity(intent);
         }catch(ApiException e){
             Toast.makeText(getApplicationContext(),"Login fallado "+e.getMessage(),Toast.LENGTH_LONG).show();
         }
