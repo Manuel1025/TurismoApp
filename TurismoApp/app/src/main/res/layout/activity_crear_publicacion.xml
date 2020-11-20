@@ -27,7 +27,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/aclonica"
-                    android:text="FOTO" />
+                    android:text="FOTO"
+                    android:textColor="#FFFFFF"
+                    app:iconTint="#22877F" />
 
                 <Space
                     android:layout_width="18dp"
